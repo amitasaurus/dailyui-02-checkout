@@ -1,0 +1,118 @@
+$brand: #fcb8ab;
+$mdc-theme-primary: #fcb8ab;
+$mdc-theme-secondary: #feeae6;
+@import "@material/textfield/mdc-text-field";
+
+.checkout {
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+    display: flex;
+    font-family: "Open Sans", sans-serif;
+
+    &__payment {
+        flex-basis: 25%;
+        flex-grow: 1;
+        background-color: #333648;
+        box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14),
+            0 9px 46px 8px rgba(0, 0, 0, 0.12),
+            0 11px 15px -7px rgba(0, 0, 0, 0.2);
+        position: relative;
+        padding: 32px;
+    }
+
+    &__buy {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-transform: uppercase;
+        font-size: 20px;
+        letter-spacing: 5px;
+        height: 64px;
+        background-color: $brand;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+        font-weight: 800;
+        cursor: pointer;
+    }
+
+    &__heading {
+        margin-top: 10%;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 1);
+        letter-spacing: 0.0625em;
+        font-weight: bold;
+        display: flex;
+        font-size: 18px;
+
+        .material-icons {
+            margin-left: auto;
+            font-size: 22px;
+        }
+    }
+
+    &__payment-modes {
+        margin: 32px 0px;
+        margin-top: 25%;
+    }
+
+    &__details {
+        flex-basis: 75%;
+        flex-grow: 1;
+    }
+}
+
+.payment-modes {
+    &__heading {
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.45);
+        letter-spacing: 0.0625em;
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 16px;
+    }
+
+    &__mode {
+        display: flex;
+        align-items: center;
+
+        img {
+            cursor: pointer;
+            margin-right: 32px;
+            opacity: 0.5;
+        }
+    }
+
+    &--mastercard {
+        width: 32px;
+    }
+
+    &--applepay {
+        width: 45px;
+    }
+
+    &--paypal {
+        width: 22px;
+    }
+
+    &--bhim {
+        width: 40px;
+    }
+
+    &--selected {
+        border-bottom: 2px solid $brand;
+        padding-bottom: 3px;
+        scale: 1.2;
+        opacity: 1 !important;
+    }
+
+    &__card {
+        .mdc-text-field {
+            width: 100%;
+            margin: 26px auto;
+        }
+    }
+}
