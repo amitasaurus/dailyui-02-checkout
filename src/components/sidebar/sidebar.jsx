@@ -10,9 +10,39 @@ class Sidebar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cardnumber: ""
+            cardnumber: "",
+            cardtype: null
         };
         this.handleCardNumberChange = this.handleCardNumberChange.bind(this);
+        this.cardregex = {
+            visa: /^4[0-9]{12}(?:[0-9]{3})?$/,
+            mastercard: /^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$/,
+            amex: /^3[47][0-9]{13}$/,
+            dinersclub: /^3(?:0[0-5]|[68][0-9])[0-9]{11}$/,
+            discover: /^6(?:011|5[0-9]{2})[0-9]{12}$/,
+            jcb: /^(?:2131|1800|35\d{3})\d{11}$/
+        };
+    }
+
+    testCard(cardnumber) {
+        if (this.cardregex.visa.test(cardnumber)) {
+            return "visa";
+        }
+        if (this.cardregex.mastercard.test(cardnumber)) {
+            return "mastercard";
+        }
+        if (this.cardregex.amex.test(cardnumber)) {
+            return "amex";
+        }
+        if (this.cardregex.dinersclub.test(cardnumber)) {
+            return "dinersclub";
+        }
+        if (this.cardregex.discover.test(cardnumber)) {
+            return "discover";
+        }
+        if (this.cardregex.jcb.test(cardnumber)) {
+            return "jcb";
+        }
     }
 
     cc_format(value) {
@@ -42,6 +72,22 @@ class Sidebar extends Component {
         this.setState({
             cardnumber: this.cc_format(event.target.value)
         });
+
+        let cardtype = this.testCard(event.target.value.split(" ").join(""));
+        if (
+            [
+                "visa",
+                "mastercard",
+                "amex",
+                "dinersclub",
+                "discover",
+                "jcb"
+            ].includes(cardtype)
+        ) {
+            this.setState({ cardtype: cardtype });
+        } else {
+            this.setState({ cardtype: null });
+        }
     }
     render() {
         return (
