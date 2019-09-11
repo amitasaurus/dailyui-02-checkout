@@ -4,7 +4,7 @@ import "./input.scss";
 class Input extends Component {
     state = {};
     getClass() {
-        return `mdc-text-field mdc-text-field--outlined ${this.props.customClass}`;
+        return `mdc-text-field mdc-text-field--outlined ${this.props.customclass}`;
     }
     render() {
         return (
@@ -12,7 +12,7 @@ class Input extends Component {
                 <input
                     className="mdc-text-field__input"
                     id="text-field-hero-input"
-                    type={this.props.type}
+                    {...this.props}
                 />
                 <div className="mdc-notched-outline">
                     <div className="mdc-notched-outline__leading"></div>

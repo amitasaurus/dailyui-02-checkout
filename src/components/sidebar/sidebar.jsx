@@ -7,12 +7,41 @@ import Input from "../input/input";
 import { MDCTextField } from "@material/textfield";
 
 class Sidebar extends Component {
-    state = {};
+    constructor(props) {
+        super(props);
+        this.state = {
+            cardnumber: ""
+        };
+        this.handleCardNumberChange = this.handleCardNumberChange.bind(this);
+    }
+
+    cc_format(value) {
+        let v = value.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
+        let matches = v.match(/\d{4,16}/g);
+        let match = (matches && matches[0]) || "";
+        let parts = [];
+
+        for (let i = 0, len = match.length; i < len; i += 4) {
+            parts.push(match.substring(i, i + 4));
+        }
+
+        if (parts.length) {
+            return parts.join(" ");
+        } else {
+            return value;
+        }
+    }
+
     componentDidMount() {
         let inputs = document.querySelectorAll(".mdc-text-field");
         for (let input of inputs) {
             new MDCTextField(input);
         }
+    }
+    handleCardNumberChange(event) {
+        this.setState({
+            cardnumber: this.cc_format(event.target.value)
+        });
     }
     render() {
         return (
@@ -47,17 +76,22 @@ class Sidebar extends Component {
                     </div>
                     <div className="payment-modes__card">
                         <Input label="Name" type="text" />
-                        <Input label="Card Number" type="number" />
+                        <Input
+                            label="Card Number"
+                            type="text"
+                            onChange={this.handleCardNumberChange}
+                            value={this.state.cardnumber}
+                        />
                         <div className="payment-modes__card--extraInfo">
                             <Input
                                 label="Expiry"
                                 type="text"
-                                customClass="payment-modes__card--inputSmall"
+                                customclass="payment-modes__card--inputSmall"
                             />
                             <Input
                                 label="CVV"
                                 type="number"
-                                customClass="payment-modes__card--inputSmall"
+                                customclass="payment-modes__card--inputSmall"
                             />
                         </div>
                     </div>
