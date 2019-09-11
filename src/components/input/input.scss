@@ -1,0 +1,16 @@
+@import "../../variables";
+@import "@material/textfield/mdc-text-field";
+
+.mdc-text-field--outlined:not(.mdc-text-field--focused) {
+    @include mdc-text-field-outline-color($mdc-theme-primary);
+    @include mdc-text-field-label-color($mdc-theme-primary);
+    @include mdc-text-field-hover-outline-color($mdc-theme-primary);
+}
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
+    color: #ffffff;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
