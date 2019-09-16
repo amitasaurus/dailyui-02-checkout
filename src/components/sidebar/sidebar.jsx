@@ -4,6 +4,12 @@ import applePay from "../../images/apple-pay.png";
 import paypal from "../../images/paypal.png";
 import bhimUpi from "../../images/bhim-upi.png";
 import Input from "../input/input";
+import visa from "../../images/visa.png";
+import mastercard from "../../images/mastercard.png";
+import amex from "../../images/amex.png";
+import dinersclub from "../../images/dinersclub.png";
+import discover from "../../images/discover.png";
+import jcb from "../../images/jcb.png";
 import { MDCTextField } from "@material/textfield";
 
 class Sidebar extends Component {
@@ -21,6 +27,14 @@ class Sidebar extends Component {
             dinersclub: /^3(?:0[0-5]|[68][0-9])[0-9]{11}$/,
             discover: /^6(?:011|5[0-9]{2})[0-9]{12}$/,
             jcb: /^(?:2131|1800|35\d{3})\d{11}$/
+        };
+        this.cardlogos = {
+            visa: visa,
+            mastercard: mastercard,
+            amex: amex,
+            dinersclub: dinersclub,
+            discover: discover,
+            jcb: jcb
         };
     }
 
@@ -127,6 +141,8 @@ class Sidebar extends Component {
                             type="text"
                             onChange={this.handleCardNumberChange}
                             value={this.state.cardnumber}
+                            cardtype={this.state.cardtype}
+                            cardlogos={this.cardlogos}
                         />
                         <div className="payment-modes__card--extraInfo">
                             <Input

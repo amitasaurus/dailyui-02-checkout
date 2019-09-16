@@ -6,13 +6,26 @@ class Input extends Component {
     getClass() {
         return `mdc-text-field mdc-text-field--outlined ${this.props.customclass}`;
     }
+    getCardType() {
+        return this.props.cardtype ? (
+            <img
+                src={this.props.cardlogos[this.props.cardtype]}
+                alt={this.props.cardtype}
+                className="card-type"
+            />
+        ) : (
+            ""
+        );
+    }
     render() {
         return (
             <div className={this.getClass()}>
                 <input
                     className="mdc-text-field__input"
                     id="text-field-hero-input"
-                    {...this.props}
+                    onChange={this.props.onChange}
+                    value={this.props.value}
+                    type={this.props.type}
                 />
                 <div className="mdc-notched-outline">
                     <div className="mdc-notched-outline__leading"></div>
@@ -24,7 +37,9 @@ class Input extends Component {
                             {this.props.label}
                         </label>
                     </div>
-                    <div className="mdc-notched-outline__trailing"></div>
+                    <div className="mdc-notched-outline__trailing">
+                        {this.getCardType()}
+                    </div>
                 </div>
             </div>
         );
